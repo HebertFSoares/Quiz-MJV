@@ -6,9 +6,6 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
-
 @RequiredArgsConstructor
 @Service
 public class UserService {
@@ -18,8 +15,6 @@ public class UserService {
     public User signup(User user){
         return userRepository.save(user);
     }
-
-
     @Transactional
     public List<User> getAllUser(){
         return userRepository.findAll();
