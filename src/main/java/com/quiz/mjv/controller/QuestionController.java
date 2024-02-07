@@ -1,8 +1,11 @@
 package com.quiz.mjv.controller;
 
 import com.quiz.mjv.dto.QuestionDTO;
+
+import com.quiz.mjv.entity.Question;
 import com.quiz.mjv.service.QuestionService;
 import lombok.AllArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,4 +25,12 @@ public class QuestionController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedQuestionDTO);
     }
 
+    @GetMapping("/random")
+    public ResponseEntity<QuestionDTO> getRandomQuestion (){
+        QuestionDTO randomQuestionDTO = questionService.getRandomQuestion();
+        if(randomQuestionDTO == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(randomQuestionDTO);
+    }
 }
