@@ -1,6 +1,7 @@
 package com.quiz.mjv.controller;
 
 import com.quiz.mjv.dto.QuestionDTO;
+
 import com.quiz.mjv.entity.Question;
 import com.quiz.mjv.service.QuestionService;
 import lombok.AllArgsConstructor;
@@ -32,6 +33,4 @@ public class QuestionController {
         }
         return ResponseEntity.ok(randomQuestionDTO);
     }
-
-
 }
