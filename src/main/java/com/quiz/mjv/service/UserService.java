@@ -6,11 +6,6 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-<<<<<<< Updated upstream
-=======
-import java.util.List;
-
->>>>>>> Stashed changes
 @RequiredArgsConstructor
 @Service
 public class UserService {
@@ -20,13 +15,9 @@ public class UserService {
     public User signup(User user){
         return userRepository.save(user);
     }
-<<<<<<< Updated upstream
-=======
-
     @Transactional
     public List<User> getAllUser(){
         return userRepository.findAll();
     }
 
->>>>>>> Stashed changes
 }
