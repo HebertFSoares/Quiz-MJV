@@ -32,4 +32,8 @@ public class QuestionAlternativeDTO {
                 ", questionId=" + questionId +
                 '}';
     }
+    public boolean isCorrect() {
+        return this.isCorrect;
+    }
+
 }

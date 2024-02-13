@@ -19,7 +19,7 @@ public class QuestionAlternativeService {
     @Autowired
     private final QuestionAlternativeMapper questionAlternativeMapper;
 
-    public QuestionAlternativeDTO createQuestionAlternative (QuestionAlternative questionAlternative){
+    public QuestionAlternativeDTO createdQuestionAlternative (QuestionAlternative questionAlternative){
         try {
             QuestionAlternative savedQuestionAlternative = questionAlternativeRepository.save(questionAlternative);
             return  questionAlternativeMapper.toDTO(savedQuestionAlternative);
@@ -27,6 +27,7 @@ public class QuestionAlternativeService {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, error("save"), e);
         }
     }
+
 
     private String error(String error){
         return "QuestionAlternativeService" + error;

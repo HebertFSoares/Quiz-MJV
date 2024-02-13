@@ -25,7 +25,7 @@ public class QuestionAlternativeController {
     public ResponseEntity<Void> createQuestionAlternatives (@PathVariable Long questionId, @RequestBody List<QuestionAlternativeDTO> alternatives) {
         for (QuestionAlternativeDTO alternativeDTO : alternatives) {
             alternativeDTO.setQuestionId(questionId);
-            questionAlternativeService.createQuestionAlternative(questionAlternativeMapper.toEntity(alternativeDTO));
+            questionAlternativeService.createdQuestionAlternative(questionAlternativeMapper.toEntity(alternativeDTO));
         }
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
