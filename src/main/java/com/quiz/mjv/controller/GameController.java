@@ -4,17 +4,14 @@ import com.quiz.mjv.dto.AnswerDTO;
 import com.quiz.mjv.dto.QuestionAlternativeDTO;
 import com.quiz.mjv.dto.QuestionDTO;
 import com.quiz.mjv.dto.UserDTO;
-import com.quiz.mjv.repository.UserRepository;
 import com.quiz.mjv.service.QuestionService;
 import com.quiz.mjv.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 
 @RestController
 @RequestMapping("/api/game")
@@ -31,21 +28,13 @@ public class GameController {
             @ApiResponse(responseCode = "200", description = "Pergunta obtida com sucesso"),
             @ApiResponse(responseCode = "404", description = "Nenhuma pergunta encontrada")
     })
-
-@RestController
-@RequestMapping("api/game")
-public class GameController {
-    private final QuestionService questionService;
-    private final UserRepository userRepository;
-
-    private final UserScoreService userScoreService;
-
-    public GameController (QuestionService questionService,
-                           UserRepository userRepository,
-                           UserScoreService userScoreService) {
-        this.questionService = questionService;
-        this.userRepository = userRepository;
-        this.userScoreService = userScoreService;
+    @GetMapping("/start")
+    public ResponseEntity<QuestionDTO> startGame () {
+        QuestionDTO firstQuestion = questionService.getRandomQuestion();
+        if (firstQuestion == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(firstQuestion);
     }
 
     @Operation(summary = "Verificar resposta", description = "Endpoint para verificar a resposta de uma pergunta e atualizar o score do usuário", responses = {
@@ -57,7 +46,6 @@ public class GameController {
         List<QuestionDTO> questionDTOList = questionService.getAllQuestions();
 
         boolean isAnswerCorrect = checkAnswer(answerDTO, questionDTOList);
-
 
         String currentUserNickname = answerDTO.getNickname();
         UserDTO userDTO = userService.findByNickname(currentUserNickname);
@@ -77,7 +65,8 @@ public class GameController {
             }
         } else {
             return ResponseEntity.badRequest().body("Usuário não encontrado.");
-
+        }
+    }
 
     private boolean checkAnswer (AnswerDTO answerDTO, List<QuestionDTO> questionDTOList) {
         Long questionId = answerDTO.getQuestionId();
@@ -92,7 +81,6 @@ public class GameController {
                 }
             }
         }
-
         return false;
     }
 }
