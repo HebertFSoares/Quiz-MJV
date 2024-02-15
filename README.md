@@ -47,7 +47,7 @@ Acesse a documentação da API através do Swagger UI:
 
 Contribuições são bem-vindas! Se você encontrar um bug ou deseja sugerir uma melhoria, sinta-se à vontade para abrir uma issue ou enviar um pull request.
 
-## Autores
+## Desenvolvedor
 
 - [Hebert Soares](https://github.com/HebertFSoares)
 
