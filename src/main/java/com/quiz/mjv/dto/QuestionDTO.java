@@ -13,24 +13,9 @@ import java.util.ArrayList;
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class QuestionDTO {
-<<<<<<< Updated upstream
-    @NotBlank
-=======
-<<<<<<< Updated upstream
-    @JsonProperty("id")
-    private Long id;
-=======
-<<<<<<< Updated upstream
-    @JsonProperty("id")
-    private Long id;
-=======
-    @NotBlank
     @JsonProperty("id")
     private Long id;
     @NotBlank
->>>>>>> Stashed changes
->>>>>>> Stashed changes
->>>>>>> Stashed changes
     @JsonProperty("question")
     private String question;
     @NotBlank

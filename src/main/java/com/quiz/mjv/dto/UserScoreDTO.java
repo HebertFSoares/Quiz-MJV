@@ -3,9 +3,7 @@ package com.quiz.mjv.dto;
 import lombok.*;
 
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @ToString
-public class AnswerDTO {
-    private Long questionId;
-    private String playerAnswer;
+public class UserScoreDTO {
     private String nickname;
-
+    private int score;
 }
