@@ -4,15 +4,14 @@ import com.quiz.mjv.dto.UserDTO;
 import com.quiz.mjv.entity.User;
 import com.quiz.mjv.mapper.UserMapper;
 import com.quiz.mjv.service.UserService;
-<<<<<<< Updated upstream
-=======
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
->>>>>>> Stashed changes
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +35,7 @@ public class UserController {
 
     })
     @PostMapping("/signup")
-    public ResponseEntity<UserDTO> create (@RequestBody UserDTO newUserDTO){
+    public ResponseEntity<UserDTO> create (@Valid @RequestBody UserDTO newUserDTO){
         User newUser = userMapper.toEntity(newUserDTO);
         User createdUser = userService.signup(newUser);
         UserDTO createdUserDTO = userMapper.toDTO(createdUser);

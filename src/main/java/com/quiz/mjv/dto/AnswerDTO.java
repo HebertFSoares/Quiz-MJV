@@ -7,4 +7,5 @@ public class AnswerDTO {
     private Long questionId;
     private String playerAnswer;
     private String nickname;
+
 }

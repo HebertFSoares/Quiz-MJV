@@ -2,6 +2,7 @@ package com.quiz.mjv.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,19 +13,15 @@ import java.util.ArrayList;
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class QuestionDTO {
-<<<<<<< Updated upstream
-    @JsonProperty("id")
-    private Long id;
-=======
-    @NotBlank
     @JsonProperty("id")
     private Long id;
     @NotBlank
->>>>>>> Stashed changes
     @JsonProperty("question")
     private String question;
+    @NotBlank
     @JsonProperty("response")
     private String response;
+    @NotBlank
     @JsonProperty("theme")
     private String theme;
     @JsonProperty("questionAlternativeDTO")
@@ -33,7 +30,6 @@ public class QuestionDTO {
     @Override
     public String toString() {
         return "QuestionDTO{" +
-                "id=" + id +
                 ", question='" + question + '\'' +
                 ", response='" + response + '\'' +
                 ", theme='" + theme + '\'' +
