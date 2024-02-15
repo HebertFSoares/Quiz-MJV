@@ -47,11 +47,20 @@ Acesse a documentação da API através do Swagger UI:
 
 Contribuições são bem-vindas! Se você encontrar um bug ou deseja sugerir uma melhoria, sinta-se à vontade para abrir uma issue ou enviar um pull request.
 
+
 ## Desenvolvedor
 
-- [Hebert Soares](https://github.com/HebertFSoares)
+<table>
+  <tr>
+    <td align="center">
+      <a href="#" title="Hebert">
+        <img src="https://avatars.githubusercontent.com/u/88061348?s=400&u=0f256aaecccd77a0d09b4b04b6a7f42e95729fbd&v=4" width="100px;" alt="Ft_Github"/><br>
+        <sub>
+          <b>HebertFSoares</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
 
-## Licença
-
-Este projeto está licenciado sob a [MIT License](LICENSE).
 
