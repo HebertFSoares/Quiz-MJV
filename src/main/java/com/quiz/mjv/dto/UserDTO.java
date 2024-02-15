@@ -7,6 +7,7 @@ import lombok.*;
 
 @Getter @Setter  @NoArgsConstructor @AllArgsConstructor @ToString
 public class UserDTO {
+    private Long id;
     @NotBlank
     private String nickname;
     @NotBlank
@@ -15,4 +16,5 @@ public class UserDTO {
     @NotBlank
     @Size(min = 6)
     private String password;
+    private int score;
 }

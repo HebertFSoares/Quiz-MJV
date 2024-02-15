@@ -1,11 +1,14 @@
 package com.quiz.mjv.entity;
 
+import com.quiz.mjv.dto.AnswerDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Getter @Setter @NoArgsConstructor
@@ -22,6 +25,11 @@ public class User implements Serializable {
     private String email;
     @Column(name = "password", nullable = false, length = 50)
     private String password;
+
+    @Column(name = "score", nullable = false)
+    private int score;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Answer> userAnswers = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {
