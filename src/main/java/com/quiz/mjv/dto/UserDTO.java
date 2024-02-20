@@ -8,7 +8,7 @@ import lombok.*;
 @Getter @Setter  @NoArgsConstructor @AllArgsConstructor @ToString
 public class UserDTO {
     private Long id;
-    @NotBlank
+    @NotBlank(message = "O nickname não pode estar em branco")
     private String nickname;
     @NotBlank
     @Email(regexp = "^[a-z0-9.+-]+@[a-z0-9.-]+\\.[a-z]{2,}$")
@@ -17,4 +17,5 @@ public class UserDTO {
     @Size(min = 6)
     private String password;
     private int score;
+
 }
