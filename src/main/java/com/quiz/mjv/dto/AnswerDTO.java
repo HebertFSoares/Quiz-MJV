@@ -8,4 +8,8 @@ public class AnswerDTO {
     private String playerAnswer;
     private String nickname;
 
+    public Long getQuestionId() {
+        return questionId;
+    }
+
 }

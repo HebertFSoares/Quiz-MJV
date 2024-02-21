@@ -36,4 +36,13 @@ public class QuestionDTO {
                 ", questionAlternativeDTOS=" + questionAlternativeDTOS +
                 '}';
     }
+
+
+    public ArrayList<QuestionAlternativeDTO> getQuestionAlternativeDTOS() {
+        return questionAlternativeDTOS;
+    }
+
+    public void setQuestionAlternativeDTOS(ArrayList<QuestionAlternativeDTO> questionAlternativeDTOS) {
+        this.questionAlternativeDTOS = questionAlternativeDTOS;
+    }
 }
