@@ -1,7 +1,7 @@
 package com.quiz.mjv.controller;
 
 import com.quiz.mjv.dto.UserDTO;
-import com.quiz.mjv.entity.User;
+import com.quiz.mjv.entity.Users;
 import com.quiz.mjv.mapper.UserMapper;
 import com.quiz.mjv.service.UserService;
 
@@ -35,11 +35,9 @@ public class UserController {
 
     })
     @PostMapping("/signup")
-    public ResponseEntity<UserDTO> create (@Valid @RequestBody UserDTO newUserDTO){
-        User newUser = userMapper.toEntity(newUserDTO);
-        User createdUser = userService.signup(newUser);
-        UserDTO createdUserDTO = userMapper.toDTO(createdUser);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdUserDTO);
+    public ResponseEntity<UserDTO> create (@Valid @RequestBody UserDTO createDTO){
+        Users user = userService.signup(UserMapper.toUsuario(createDTO));
+        return ResponseEntity.status(HttpStatus.CREATED).body(userMapper.toDto(user));
     }
 
     @Operation(summary = "Obter todos os usuários", description = "Endpoint para obter todos os usuários cadastrados no sistema", responses = {
@@ -48,8 +46,8 @@ public class UserController {
     @GetMapping("/users")
     public ResponseEntity<List<UserDTO>> getAllUser
             (){
-        List<User> users = userService.getAllUser();
-        List<UserDTO> userDTOs = users.stream().map(userMapper::toDTO).collect(Collectors.toList());
+        List<Users> users = userService.getAllUser();
+        List<UserDTO> userDTOs = users.stream().map(userMapper::toDto).collect(Collectors.toList());
         return ResponseEntity.status(HttpStatus.OK).body(userDTOs);
     }
 

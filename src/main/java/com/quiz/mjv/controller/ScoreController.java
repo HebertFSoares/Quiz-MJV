@@ -1,7 +1,7 @@
 package com.quiz.mjv.controller;
 
 import com.quiz.mjv.dto.RankingDTO;
-import com.quiz.mjv.entity.User;
+import com.quiz.mjv.entity.Users;
 import com.quiz.mjv.repository.UserRepository;
 import com.quiz.mjv.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -36,9 +36,9 @@ public class ScoreController {
     })
     @GetMapping
     public ResponseEntity<List<RankingDTO>> getRanking() {
-        List<User> users = userRepository.findAllByOrderByScoreDesc();
+        List<Users> users = userRepository.findAllByOrderByScoreDesc();
         List<RankingDTO> rankingDTOs = new ArrayList<>();
-        for (User user : users) {
+        for (Users user : users) {
             rankingDTOs.add(new RankingDTO(user.getNickname(), user.getScore()));
         }
         return ResponseEntity.ok(rankingDTOs);
