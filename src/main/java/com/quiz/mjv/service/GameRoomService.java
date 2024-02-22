@@ -26,11 +26,8 @@ public class GameRoomService {
     }
 
     public GameRoomDTO createGameRoom(String nickname, String email) {
-        // Verificar se o usuário já está cadastrado no banco de dados
         User user = userRepository.findByNicknameAndEmail(nickname, email);
         if (user == null) {
-            // Usuário não encontrado, você pode lançar uma exceção ou retornar um código de erro
-            // Por exemplo:
             throw new UserNotFoundException("Usuário não encontrado");
         }
 
@@ -45,27 +42,22 @@ public class GameRoomService {
 
 
     public void joinGameRoom(Long roomId, String nickname, String email) {
-        // Verificar se a sala de jogo existe
         GameRoom gameRoom = gameRoomRepository.findById(roomId)
-                .orElseThrow(() -> new IllegalArgumentException("Game room not found."));
+                .orElseThrow(() -> new IllegalArgumentException("Sala não encontrada."));
 
-        // Verificar se a sala de jogo está cheia
         if (gameRoom.getPlayers().size() >= gameRoom.getMaxPlayers()) {
-            throw new IllegalArgumentException("The game room is full.");
+            throw new IllegalArgumentException("A sala já está cheia.");
         }
 
-        // Verificar se o jogador já está na sala de jogo
         if (gameRoom.getPlayers().contains(nickname)) {
-            throw new IllegalArgumentException("You are already in the game room.");
+            throw new IllegalArgumentException("Você já está na sala.");
         }
 
-        // Verificar se o jogador já existe no banco de dados
         User existingUser = userRepository.findByNicknameAndEmail(nickname, email);
         if (existingUser == null) {
-            throw new IllegalArgumentException("User with provided nickname and email not found.");
+            throw new IllegalArgumentException("Usuário não encontrados.");
         }
 
-        // Adicionar o jogador à sala de jogo
         gameRoom.getPlayers().add(nickname);
         gameRoomRepository.save(gameRoom);
     }
