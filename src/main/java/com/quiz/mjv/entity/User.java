@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Getter @Setter @NoArgsConstructor
 @Entity
 @Table(name = "Users")
 public class User implements Serializable {
@@ -31,6 +30,9 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Answer> userAnswers = new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name = "game_room_id")
+    private GameRoom gameRoom;
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -39,9 +41,78 @@ public class User implements Serializable {
         return Objects.equals(id, user.id) && Objects.equals(nickname, user.nickname) && Objects.equals(email, user.email) && Objects.equals(password, user.password);
     }
 
+    public User() {
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(id, nickname, email, password);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public List<Answer> getUserAnswers() {
+        return userAnswers;
+    }
+
+    public void setUserAnswers(List<Answer> userAnswers) {
+        this.userAnswers = userAnswers;
+    }
+
+    public GameRoom getGameRoom() {
+        return gameRoom;
+    }
+
+    public void setGameRoom(GameRoom gameRoom) {
+        this.gameRoom = gameRoom;
+    }
+
+    public User(Long id, String nickname, String email, String password, int score, List<Answer> userAnswers, GameRoom gameRoom) {
+        this.id = id;
+        this.nickname = nickname;
+        this.email = email;
+        this.password = password;
+        this.score = score;
+        this.userAnswers = userAnswers;
+        this.gameRoom = gameRoom;
     }
 
     @Override
