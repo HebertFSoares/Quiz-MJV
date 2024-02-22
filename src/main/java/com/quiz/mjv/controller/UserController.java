@@ -21,12 +21,16 @@ import java.util.List;
 import java.util.logging.ErrorManager;
 import java.util.stream.Collectors;
 
-@RequiredArgsConstructor
 @RestController
 @RequestMapping("api")
 public class UserController {
     private final UserService userService;
     private final UserMapper userMapper;
+
+    public UserController(UserService userService, UserMapper userMapper) {
+        this.userService = userService;
+        this.userMapper = userMapper;
+    }
 
     @Operation(summary = "Criar um novo usuario", description = "Recurso para criar um novo usuário" ,responses = {
             @ApiResponse(responseCode = "201", description = "Recurso criado com sucesso" ,content = @Content(mediaType = "application/json", schema = @Schema(implementation = UserDTO.class))),
@@ -46,8 +50,7 @@ public class UserController {
             @ApiResponse(responseCode = "200", description = "Lista de usuários retornada com sucesso", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = UserDTO.class))))
     })
     @GetMapping("/users")
-    public ResponseEntity<List<UserDTO>> getAllUser
-            (){
+    public ResponseEntity<List<UserDTO>> getAllUser(){
         List<User> users = userService.getAllUser();
         List<UserDTO> userDTOs = users.stream().map(userMapper::toDTO).collect(Collectors.toList());
         return ResponseEntity.status(HttpStatus.OK).body(userDTOs);
